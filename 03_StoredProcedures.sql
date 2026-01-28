@@ -23,7 +23,7 @@ BEGIN
     SET NOCOUNT ON;
     SET XACT_ABORT ON;
     BEGIN TRY
-        BEGIN TRANSACTION
+        BEGIN TRANSACTION;
             -- Check Age (Minimum 16)
             IF @DateOfBirth > DATEADD(YEAR, -16, CAST(GETDATE() AS DATE))
                 THROW 51000, 'ERROR: Members must be at least 16 years old.', 1;
@@ -61,7 +61,7 @@ BEGIN
     SET NOCOUNT ON;
     SET XACT_ABORT ON;
     BEGIN TRY
-        BEGIN TRANSACTION
+        BEGIN TRANSACTION;
             IF NOT EXISTS (SELECT 1 FROM Membership.Members WHERE MemberID = @MemberID) 
                 THROW 51000, 'ERROR: Member does not exist', 1;
 
@@ -104,7 +104,7 @@ BEGIN
     SET NOCOUNT ON;
     SET XACT_ABORT ON;
     BEGIN TRY
-        BEGIN TRANSACTION
+        BEGIN TRANSACTION;
             IF NOT EXISTS (SELECT 1 FROM Membership.Members WHERE MemberID = @MemberID)
                 THROW 51000, 'ERROR: Member does not exist', 1;
 
@@ -132,7 +132,7 @@ BEGIN
     SET NOCOUNT ON;
     SET XACT_ABORT ON;
     BEGIN TRY
-        BEGIN TRANSACTION
+        BEGIN TRANSACTION;
             IF NOT EXISTS (SELECT 1 FROM Membership.Members WHERE MemberID = @MemberID)
                 THROW 51000, 'ERROR: Member does not exist', 1;
 
@@ -163,7 +163,7 @@ BEGIN
     DECLARE @Today DATE = CAST(GETDATE() AS DATE);
     DECLARE @Yesterday DATE = DATEADD(DAY, -1, @Today);
     BEGIN TRY
-        BEGIN TRANSACTION
+        BEGIN TRANSACTION;
             IF NOT EXISTS (SELECT 1 FROM Staff.Employees WHERE EmployeeID = @EmployeeID)
                 THROW 51000, 'ERROR: Employee does not exist.', 1;
 
@@ -183,3 +183,4 @@ BEGIN
 END;
 
 GO
+
