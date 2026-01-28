@@ -154,10 +154,10 @@ CREATE TABLE Staff.Employees (
     CreatedAt DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
     UpdatedAt DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
     CONSTRAINT PK_Employees_EmployeeID PRIMARY KEY (EmployeeID),
-    CONSTRAINT FK_Emplyees_JobTitle_JobTitleID FOREIGN KEY (JobTitleID) REFERENCES Staff.JobTitle(JobTitleID),
+    CONSTRAINT FK_Emplyoees_JobTitle_JobTitleID FOREIGN KEY (JobTitleID) REFERENCES Staff.JobTitle(JobTitleID),
     CONSTRAINT CK_Employees_Gender CHECK (Gender IN('M','F','D') OR Gender IS NULL),
     CONSTRAINT UQ_Employees_Email UNIQUE(Email),
-    CONSTRAINT CK_Employeess_EndDate CHECK (EndDate IS NULL OR EndDate >= HireDate),
+    CONSTRAINT CK_Employees_EndDate CHECK (EndDate IS NULL OR EndDate >= HireDate),
     CONSTRAINT CK_Employees_Status CHECK(Status IN ('Active','OnLeave','Terminated'))
 );
 GO
@@ -168,7 +168,7 @@ CREATE TABLE Staff.Salary (
     SalaryID INT IDENTITY (1,1),
     EmployeeID INT NOT NULL,
     PayType NVARCHAR(50) NOT NULL,
-    SalaryMonth DECIMAL(10,2) NOT NULL,
+    SalaryAmount DECIMAL(10,2) NOT NULL,
     EffectiveFrom DATE NOT NULL DEFAULT CONVERT(date, GETDATE()),
     EffectiveTo DATE NULL,
     CreatedAt DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
@@ -176,7 +176,7 @@ CREATE TABLE Staff.Salary (
     CONSTRAINT PK_Salary_SalaryID PRIMARY KEY (SalaryID),
     CONSTRAINT FK_Employees_EmployeeID FOREIGN KEY(EmployeeID) REFERENCES Staff.Employees(EmployeeID),
     CONSTRAINT CK_Salary_PayType CHECK(PayType IN('Hourly','Monthly')),
-    CONSTRAINT CK_Slaray_SalaryMonth CHECK(SalaryMonth > 0),
+    CONSTRAINT CK_Salaray_SalaryAmount CHECK(SalaryAmount > 0),
     CONSTRAINT CK_Salary_EffectiveTo CHECK (EffectiveTo IS NULL OR EffectiveTo >= EffectiveFrom)
 );
 GO
@@ -206,15 +206,16 @@ GO
 
 CREATE TABLE Scheduling.Bookings (
     BookingID INT IDENTITY(1,1),
-    MemberID INT,
-    ClassID INT,
+    MemberID INT NOT NULL,
+    ClassID INT NOT NULL,
     BookingDate DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
     Status NVARCHAR(20) NOT NULL DEFAULT 'Booked', 
     UpdatedAt DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
     CONSTRAINT PK_Bookings_BookingID PRIMARY KEY(BookingID),
-    CONSTRAINT FK_Bookings_Members_MEmberID FOREIGN KEY(MemberID) REFERENCES Membership.Members(MemberID),
+    CONSTRAINT FK_Bookings_Members_MemberID FOREIGN KEY(MemberID) REFERENCES Membership.Members(MemberID),
     CONSTRAINT FK_Bookings_Classes_ClassID FOREIGN KEY (ClassID) REFERENCES Scheduling.Classes(ClassID),
     CONSTRAINT CK_Bookings_Status CHECK(Status IN('Booked', 'Cancelled', 'Attended', 'NoShow')),
     CONSTRAINT UQ_Bookings_Member_Class UNIQUE (MemberID, ClassID)
 );
+
 GO
