@@ -1,14 +1,14 @@
 # 🏋️‍♂️ MyFitnessGym - SQL Backend System
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg) ![SQL Server](https://img.shields.io/badge/Database-SQL%20Server-red)
+
 A well-structured relational database backend for a fitness studio, focused on clean schema design, business logic in **T-SQL**, and reliable historical data tracking.  
 This project was created as a learning and portfolio project to demonstrate practical SQL Server backend skills.
 
 ---
 
 ## 🚀 Overview
-It focuses on data persistence and core business logic, handling member registrations, class scheduling, and employee management directly at the database level.
-
-
+The system focuses on data persistence and core business logic, handling member registrations, class scheduling, and employee management directly at the database level.
 
 ### Key Technical Highlights:
 * **Modular Architecture:** Organized into logical schemas (`Membership`, `Staff`, `Scheduling`, `App`, `Gym`).
@@ -19,12 +19,25 @@ It focuses on data persistence and core business logic, handling member registra
 
 ---
 
+## 📊 Database Schema
+The following Entity Relationship Diagram (ERD) illustrates the normalized database structure and relationships between members, staff, and course schedules.
+
+
+<img width="844" height="597" alt="image" src="https://github.com/user-attachments/assets/2ae20940-46b8-4d23-9d68-dac432a2dc4b" />
+
+
+
+
+---
+
 ## 📁 Repository Structure
 
-1. **`01_Database_Setup_&_Tables.sql`**: Database initialization and relational schema design.
-2. **`02_Views.sql`**: Reporting layer including occupancy calculations via CTEs.
-3. **`03_StoredProcedures.sql`**: Core business logic for memberships, bookings, and HR.
-4. **`04_SampleData.sql`**: Seed data and automated test scenarios.
+| File | Description |
+| :--- | :--- |
+| **`01_Database_Setup_&_Tables.sql`** | Database initialization and relational schema design. |
+| **`02_Views.sql`** | Reporting layer including occupancy calculations via CTEs. |
+| **`03_StoredProcedures.sql`** | Core business logic for memberships, bookings, and HR. |
+| **`04_SampleData.sql`** | Seed data and automated test scenarios. |
 
 ---
 
@@ -32,7 +45,6 @@ It focuses on data persistence and core business logic, handling member registra
 * **Language:** T-SQL (Transact-SQL)
 * **Platform:** Microsoft SQL Server
 * **Key Concepts:** ACID Transactions, TRY / CATCH Error Handling, CTEs, SCD Type 2.
-
 
 ---
 
@@ -51,7 +63,8 @@ The system features a dedicated logging mechanism (`App.ErrorLog`) that captures
 ---
 
 ### 👤 About the Author
-I am a **Software Engineer in Training** (Specialist in Application Development) with a primary focus on **C#**. This portfolio project demonstrates my ability to design robust backend architectures and bridge the gap between application logic and relational database systems.
+I am a **Software Engineer in Training** (Fachinformatiker Anwendungsentwicklung) with a primary focus on **C# / .NET**. 
+This portfolio project demonstrates my ability to design robust backend architectures and bridge the gap between application logic and relational database systems.
 
 ---
 
