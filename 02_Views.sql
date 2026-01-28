@@ -49,12 +49,12 @@ SELECT
     e.LastName,
     j.JobName,      
     s.PayType,
-    s.Salary, 
-    s.EffectiveFrom AS SalarySince,
-    e.ContractHoursPerWeek
+    s.SalaryAmount AS Salary, 
+    s.EffectiveFrom AS SalarySince   
 FROM Staff.Employees e
 JOIN Staff.Salary s ON e.EmployeeID = s.EmployeeID
 JOIN Staff.JobTitle j ON e.JobTitleID = j.JobTitleID 
 WHERE s.EffectiveTo IS NULL  
   AND e.Status = 'Active';   
+
 GO
