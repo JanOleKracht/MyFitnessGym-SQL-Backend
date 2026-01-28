@@ -24,8 +24,8 @@ INSERT INTO Gym.Rooms (RoomName, MaxCapacity, HasAirConditioning) VALUES
 ('Spinning Lab', 15, 1);
 
 INSERT INTO Membership.Types (Name, MonthlyFee, DurationInMonth) VALUES 
-('Basic', 19.90, 12), 
-('Premium', 49.90, 24);
+('Basic12', 19.90, 12), 
+('Gold24', 49.90, 24);
 
 INSERT INTO Gym.Courses (CourseCode, CourseName, IntensityLevel) VALUES 
 ('YOGA-01', 'Hatha Yoga', 'Low'), 
@@ -38,7 +38,7 @@ INSERT INTO Staff.Employees (EmployeeNumber, FirstName, LastName, DateOfBirth, E
 VALUES ('STF-001', 'Anna', 'Schmidt', '1988-03-12', 'anna.s@gym.de', 3, '2024-01-01', 'Active');
 
 -- Initial Salary
-INSERT INTO Staff.Salary (EmployeeID, PayType, Salary, EffectiveFrom)
+INSERT INTO Staff.Salary (EmployeeID, PayType, SalaryAmount, EffectiveFrom)
 VALUES (1, 'Monthly', 3200.00, '2024-01-01');
 
 INSERT INTO Scheduling.Classes (CourseID, TrainerID, RoomID, StartTime, DayOfWeek, MaxParticipants)
@@ -76,4 +76,5 @@ PRINT '--- 5. FINAL EVALUATION ---';
 SELECT * FROM Scheduling.vClassSchedule;
 SELECT * FROM Staff.vCurrentSalaries;
 SELECT * FROM Staff.Salary WHERE EmployeeID = 1;
+
 SELECT * FROM App.ErrorLog ORDER BY LogTime DESC;
