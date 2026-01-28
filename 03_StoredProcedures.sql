@@ -170,7 +170,7 @@ BEGIN
             UPDATE Staff.Salary SET EffectiveTo = @Yesterday, UpdatedAt = SYSDATETIME()
             WHERE EmployeeID = @EmployeeID AND EffectiveTo IS NULL; 
 
-            INSERT INTO Staff.Salary (EmployeeID, PayType, Salary, EffectiveFrom, EffectiveTo, CreatedAt, UpdatedAt)
+            INSERT INTO Staff.Salary (EmployeeID, PayType, SalaryAmount, EffectiveFrom, EffectiveTo, CreatedAt, UpdatedAt)
             VALUES (@EmployeeID, @PayType, @NewSalary, @Today, NULL, SYSDATETIME(), SYSDATETIME());
         COMMIT TRANSACTION;
     END TRY
@@ -181,4 +181,5 @@ BEGIN
         THROW;
     END CATCH
 END;
+
 GO
